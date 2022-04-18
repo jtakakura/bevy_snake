@@ -27,9 +27,9 @@ fn spawn_snake(mut commands: Commands) {
 
 fn snake_movement(
     keyboard_input: Res<Input<KeyCode>>,
-    mut head_positions: Query<(&SnakeHead, &mut Transform)>,
+    mut head_positions: Query<&mut Transform, With<SnakeHead>>,
 ) {
-    for (_head, mut transform) in head_positions.iter_mut() {
+    for mut transform in head_positions.iter_mut() {
         if keyboard_input.pressed(KeyCode::Left) {
             transform.translation.x -= 2.;
         }
